@@ -15,4 +15,18 @@ class UserAccountRepository
     end
     answer
   end
+
+  def find(user_id)
+    sql = 'SELECT * FROM user_account WHERE user_id = $1;'
+    params = [user_id]
+
+    result_set = DatabaseConnection.exec_params(sql, params)
+    row1 = result_set[0]
+
+    user_account = UserAccount.new
+    user_account.email = row1["email"]
+    user_account.username = row1["username"]
+
+    return user_account
+  end
 end

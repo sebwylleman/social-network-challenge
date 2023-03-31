@@ -15,12 +15,19 @@ RSpec.describe UserAccountRepository do
   end
 
   it "returns all accounts" do
-    user_account = UserAccount.new
     repo = UserAccountRepository.new
     users = repo.all
 
     expect(users.length).to eq 1
     expect(users.first.email).to eq 'anon@gmail.com'
     expect(users.first.username).to eq'anon'
+  end
+
+  it "finds a single value from an attribute" do
+    repo = UserAccountRepository.new
+    user = repo.find(1)
+
+    expect(user.email).to eq 'anon@gmail.com'
+    expect(user.username).to eq 'anon'
   end
 end
