@@ -30,4 +30,18 @@ RSpec.describe UserAccountRepository do
     expect(user.email).to eq 'anon@gmail.com'
     expect(user.username).to eq 'anon'
   end
+
+  it "adds a new user to the table" do
+    repo = UserAccountRepository.new
+    new_user = UserAccount.new
+    new_user.email = 'tom@gmail.com'
+    new_user.username = 'tom'
+    repo.create(new_user)
+
+    user_table = repo.all
+    last_user = user_table.last
+
+    expect(last_user.email).to eq 'tom@gmail.com'
+    expect(last_user.username).to eq 'tom'
+  end
 end

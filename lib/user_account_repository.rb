@@ -29,4 +29,10 @@ class UserAccountRepository
 
     return user_account
   end
+
+  def create(user)
+    sql = 'INSERT INTO user_account (email, username) VALUES($1, $2)'
+    params = [user.email, user.username]
+    DatabaseConnection.exec_params(sql, params)
+  end
 end
