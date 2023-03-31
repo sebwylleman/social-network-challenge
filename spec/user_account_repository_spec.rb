@@ -1,6 +1,6 @@
-require_relative "../lib/user_account_repository.rb"
-require_relative "../lib/user_account.rb"
-require_relative "../lib/database_connection.rb"
+require "user_account_repository.rb"
+require "user_account.rb"
+require "database_connection.rb"
 
 
 def reset_user_account_table
@@ -17,10 +17,10 @@ RSpec.describe UserAccountRepository do
   it "returns all accounts" do
     user_account = UserAccount.new
     repo = UserAccountRepository.new
-    repo.all
+    users = repo.all
 
-    expect(user_account.length).to eq '1'
-    expect(user_account.first.email).to eq 'anon@gmail.com'
-    expect(user_account.first.username).to eq'anon'
+    expect(users.length).to eq 1
+    expect(users.first.email).to eq 'anon@gmail.com'
+    expect(users.first.username).to eq'anon'
   end
 end
