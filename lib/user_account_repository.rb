@@ -35,4 +35,10 @@ class UserAccountRepository
     params = [user.email, user.username]
     DatabaseConnection.exec_params(sql, params)
   end
+
+  def delete(id)
+    sql = 'DELETE FROM user_account WHERE id = $1;'
+    params = [id]
+    DatabaseConnection.exec_params(sql, params)
+  end
 end

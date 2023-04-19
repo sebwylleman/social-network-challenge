@@ -44,4 +44,12 @@ RSpec.describe UserAccountRepository do
     expect(last_user.email).to eq 'tom@gmail.com'
     expect(last_user.username).to eq 'tom'
   end
+  it "deletes first row from the table" do
+    repo = UserAccountRepository.new
+    repo.delete(1)
+
+    users = repo.all
+    expect(users.length).to eq 1
+    expect(users[0].user_id).to eq '2'
+  end
 end
